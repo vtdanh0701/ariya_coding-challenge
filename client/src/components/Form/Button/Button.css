@@ -1,0 +1,19 @@
+.btn{
+    height: 40px;
+    width: 25%;
+    text-transform: uppercase;
+    background: #3e4246;
+    color: #676a6d;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: .2em;
+    font-weight: 600;
+}
+.btn:hover{
+    cursor: pointer;
+}
+.active{
+    background-color:#c2a265e7;
+    color: #fff; 
+}

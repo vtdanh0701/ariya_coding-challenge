@@ -1,0 +1,32 @@
+.label{
+    color: rgba(255, 255, 255, .5);
+    font-size: 12px;
+}
+.form-input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 2px solid rgba(255, 255, 255, .2);
+    padding: .5em 0;
+    font-size: 1.2em;
+    color: #fff;
+    
+}
+
+.show{
+    position: absolute;
+    right: 0%;
+    transform: translateY(-50%);
+    color: #c2a265;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: .2em;
+}
+.show:hover{
+    cursor: pointer;
+}
+
+.hidden{
+    display: none;
+}
