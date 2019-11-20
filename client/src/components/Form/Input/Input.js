@@ -7,8 +7,6 @@ function Input(props){
     // set type for password or email
     const [type,setType] = useState(props.type);
     const [isShow,setIsShow] = useState(false);
-    
-    const [message,setMessage] = useState('')
     const id = props.type;
     
     // show and hide password
@@ -32,7 +30,7 @@ function Input(props){
                 placeholder={props.placeholder}
             />
 
-            { id == "password" &&
+            { id === "password" &&
             <div className={props.value.length > 0 ? 'show':'show hidden'}
                 onClick={togglePassword}
                >

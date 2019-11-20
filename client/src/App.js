@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 
-
+//Import components
 import NavBar from './components/NavBar/NavBar';
 import Header from './components/Form/Header/Header';
 import Input from './components/Form/Input/Input';
@@ -12,12 +12,16 @@ import {Success,Failed} from './components/Prompt/Prompt';
 
 function App() {
 
+// React Hooks declare
   const [emailInput, setEmail] = useState('');
   const [passwordInput, setPassword] = useState('');
   const [isBtnActive, setBtnActive] = useState(false);
-  const [message, setMessage] = useState('')
-  const [isSuccess,setSuccess] = useState('')
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess,setSuccess] = useState('');
 
+
+  // Toggle Button active color and clickable
   const btnActiveToggle = () => {
     if(emailInput.length > 0 && passwordInput.length >0){
       setBtnActive(true)
@@ -27,17 +31,20 @@ function App() {
     }
   }
 
- 
-
   useEffect(btnActiveToggle);
 
 
+  // handle Login with fetching graphQL
   const handleSubmit = (e) =>{
     e.preventDefault();
+
+    // Simple email validation
     if(!emailInput.includes('@')){
       setMessage("Email address is invalid")
       return 
     }
+
+    setIsLoading(true)
     let requestBody ={
       query: `
           query{
@@ -47,25 +54,31 @@ function App() {
               }
           }
       `}
-    fetch('http://localhost:3001/graphql',{
+    fetch('/graphql',{
       method: 'POST',
       body: JSON.stringify(requestBody),
       headers:{
         'Content-Type': 'application/json'
       }
-    }).then(res => {
+    })
+      // Handle login failed
+      .then(res => {
       if(res.status !== 200 && res.status !== 201){
         setSuccess(<Failed/>)
+        setIsLoading(false)
         throw new Error('Failed')
       }
       return res.json();
-    }).then(resData => {
-      console.log(resData)
-      setSuccess(<Success userName={resData.data.login.name}/>)
-      setMessage('')
-    }).catch(err => {
-      console.log(err)
-    })
+     }) 
+    // Handle login Success
+      .then(resData => {
+        setSuccess(<Success userName={resData.data.login.name}/>);
+        setMessage('');
+        setIsLoading(false);
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   return (
@@ -101,6 +114,7 @@ function App() {
             </div>
             <Button
                 title="Login"
+                isLoading={isLoading}
                 isActive={isBtnActive}
                 onClick={handleSubmit}/>
            

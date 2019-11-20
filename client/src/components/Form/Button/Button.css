@@ -10,11 +10,33 @@
     letter-spacing: .2em;
     font-weight: 600;
 }
-
+.btn > i{
+    font-size: 20px;
+    animation: spin 1s infinite forwards;
+    -webkit-animation: spin 1s ease-in-out forwards;
+}
 .active{
     background-color:#c2a265e7;
     color: #fff; 
 }
 .active:hover{
     cursor: pointer;
+}
+
+@keyframes spin{
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin{
+    0%{
+        -webkit-transform: rotate(0);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+    }
 }

@@ -25,6 +25,8 @@ body{
   box-sizing: border-box;
   text-align: left;
 }
+
+/* styling for form groups */
 .form-group{
   width: 100%;
   height: 80px;
@@ -35,11 +37,17 @@ body{
   box-sizing: border-box;
   flex-direction: column;
 }
+/* ------ */
+
+/* error message */
 .message-container{
   color: #bb4147;
   font-size: 15px;
   margin-top: 5px;
 }
+/* ------ */
+
+
 .link{
   color: #c2a265;
   font-size: 14px;

@@ -14,7 +14,7 @@ const Success = (props) => {
 const Failed = () => {
     return(
         <div className='prompt'>
-           <img src={error}/> Invalid email and/or password. Don't have an account? <a className='link'>Register</a>
+           <img alt="error" src={error}/> Invalid email and/or password. Don't have an account? <a className='link'>Register</a>
         </div>
     )
 }

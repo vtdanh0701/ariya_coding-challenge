@@ -4,15 +4,13 @@ import './NavBar.css';
 
 function NavBar(){
     return (
-        <div className="navBar">
+        <div className="nav">
             <div className="logo">
-                <img src={logo}/>
+                <img src={logo} alt="logo"/>
             </div>
             <div className="lang">
                 <i className="fas fa-globe"></i>
-                
                 EN
-                
             </div>
         </div>
     )
