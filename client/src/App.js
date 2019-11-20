@@ -6,6 +6,8 @@ import NavBar from './components/NavBar/NavBar';
 import Header from './components/Form/Header/Header';
 import Input from './components/Form/Input/Input';
 import Button from './components/Form/Button/Button';
+import {Success,Failed} from './components/Prompt/Prompt';
+
 
 
 function App() {
@@ -14,23 +16,56 @@ function App() {
   const [passwordInput, setPassword] = useState('');
   const [isBtnActive, setBtnActive] = useState(false);
   const [message, setMessage] = useState('')
-  
+  const [isSuccess,setSuccess] = useState('')
 
   const btnActiveToggle = () => {
-    if(emailInput.length > 0 || passwordInput.length >0){
+    if(emailInput.length > 0 && passwordInput.length >0){
       setBtnActive(true)
-    } else {
+    } 
+    else {
       setBtnActive(false)
     }
   }
+
+ 
+
   useEffect(btnActiveToggle);
 
 
-  const handleSubmit = () =>{
+  const handleSubmit = (e) =>{
+    e.preventDefault();
     if(!emailInput.includes('@')){
       setMessage("Email address is invalid")
-    } 
-    
+      return 
+    }
+    let requestBody ={
+      query: `
+          query{
+              login(email: "${emailInput}", password: "${passwordInput}"){
+                 email
+                 name
+              }
+          }
+      `}
+    fetch('http://localhost:3001/graphql',{
+      method: 'POST',
+      body: JSON.stringify(requestBody),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => {
+      if(res.status !== 200 && res.status !== 201){
+        setSuccess(<Failed/>)
+        throw new Error('Failed')
+      }
+      return res.json();
+    }).then(resData => {
+      console.log(resData)
+      setSuccess(<Success userName={resData.data.login.name}/>)
+      setMessage('')
+    }).catch(err => {
+      console.log(err)
+    })
   }
 
   return (
@@ -38,6 +73,7 @@ function App() {
       <NavBar/>
       <div className='container'>
         <div className='form-container'>
+            {isSuccess}
             <Header
                 title="Login"
                 />
@@ -49,7 +85,9 @@ function App() {
                 onChange={e => setEmail(e.target.value)}
                 placeholder="Email"
                 />
-            {message}
+            <div className='message-container'>
+                {message}
+            </div>
             <Input
                 label="Password"
                 id="password"
@@ -63,8 +101,9 @@ function App() {
             </div>
             <Button
                 title="Login"
-                isActive={isBtnActive}/>
-            <button onClick={handleSubmit}>Click ME</button>
+                isActive={isBtnActive}
+                onClick={handleSubmit}/>
+           
         </div>
       </div>
     </div>

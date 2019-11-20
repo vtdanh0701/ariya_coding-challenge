@@ -10,10 +10,11 @@
     letter-spacing: .2em;
     font-weight: 600;
 }
-.btn:hover{
-    cursor: pointer;
-}
+
 .active{
     background-color:#c2a265e7;
     color: #fff; 
+}
+.active:hover{
+    cursor: pointer;
 }

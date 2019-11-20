@@ -35,6 +35,11 @@ body{
   box-sizing: border-box;
   flex-direction: column;
 }
+.message-container{
+  color: #bb4147;
+  font-size: 15px;
+  margin-top: 5px;
+}
 .link{
   color: #c2a265;
   font-size: 14px;

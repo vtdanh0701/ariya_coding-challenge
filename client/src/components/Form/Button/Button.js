@@ -6,7 +6,7 @@ const Button = (props) => {
         <div className='form-group'>
             <button
                 className={props.isActive?'btn active':'btn'}
-                onClick={props.action}
+                onClick={props.isActive?props.onClick: ''}
                 >
                 {props.title}
             </button>

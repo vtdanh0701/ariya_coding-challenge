@@ -1,0 +1,9 @@
+.prompt{
+    background: #3e4246;
+    color: rgba(255, 255, 255, 0.815);
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.success{
+    color:#56b11f
+}
