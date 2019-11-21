@@ -11,6 +11,7 @@
 	npm run client-install
     ```
 
-- Run 
+- Run: 
+
 	`npm run dev`
 
