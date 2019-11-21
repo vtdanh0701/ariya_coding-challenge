@@ -6,8 +6,10 @@
 
 - Install dependencies: 
 
-	```npm i 
-	npm run client-install```
+	```
+    npm i 
+	npm run client-install
+    ```
 
 - Run 
 	`npm run dev`
