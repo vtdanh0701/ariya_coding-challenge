@@ -2,7 +2,7 @@
 
 ## Instruction
 
-- Unzip The File 
+- Download and Unzip The File 
 
 - Install dependencies: 
 
