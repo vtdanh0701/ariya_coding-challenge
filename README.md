@@ -14,4 +14,8 @@
 - Run: 
 
 	`npm run dev`
+- Login with:
+
+  Email: email@email.com
+  Password: password
 
